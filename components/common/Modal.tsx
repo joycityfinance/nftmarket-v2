@@ -11,7 +11,7 @@ import { Anchor, Button, Flex, Text, Box } from '../primitives'
 import { styled } from '../../stitches.config'
 import { Dialog } from '../primitives/Dialog'
 import LoadingSpinner from './LoadingSpinner'
-import ReservoirLogoWhiteText from 'public/ReservoirLogoWhiteText'
+import SeaPortLogoWhiteText from 'public/SeaPortLogoWhiteText'
 
 const Title = styled(DialogPrimitive.Title, {
   margin: 0,
@@ -31,7 +31,7 @@ type Props = {
   | 'onFocusCapture'
 >
 
-const Logo = styled(ReservoirLogoWhiteText, {
+const Logo = styled(SeaPortLogoWhiteText, {
   '& .letter': {
     fill: '$gray12',
   },
@@ -112,7 +112,7 @@ export const Modal = forwardRef<ElementRef<typeof Dialog>, Props>(
             borderBottomLeftRadius: '$borderRadius',
           }}
         >
-          <Anchor href="https://reservoir.tools/" target="_blank">
+          <Anchor href="https://www.seaport.market/" target="_blank">
             <Text
               style="body3"
               css={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}
