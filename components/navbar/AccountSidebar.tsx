@@ -43,14 +43,14 @@ export const AccountSidebar: FC = () => {
       css={{
         justifyContent: 'center',
       }}
-      corners="rounded"
+      corners="circle"
       type="button"
       color="gray3"
     >
       {ensAvatar ? (
         <Avatar size="medium" src={ensAvatar} />
       ) : (
-        <Jazzicon diameter={44} seed={jsNumberForAddress(address as string)} />
+        <Jazzicon diameter={44} paperStyles={{ borderRadius: '8px' }} seed={jsNumberForAddress(address as string)} />
       )}
     </Button>
   )
