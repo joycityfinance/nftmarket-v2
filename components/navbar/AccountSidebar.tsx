@@ -43,7 +43,7 @@ export const AccountSidebar: FC = () => {
       css={{
         justifyContent: 'center',
       }}
-      corners="circle"
+      corners="rounded"
       type="button"
       color="gray3"
     >
