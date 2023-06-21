@@ -118,6 +118,7 @@ export const AccountSidebar: FC = () => {
                     ) : (
                       <Jazzicon
                         diameter={44}
+                        paperStyles={{ borderRadius: '8px' }}
                         seed={jsNumberForAddress(address as string)}
                       />
                     )}
