@@ -12,6 +12,10 @@ import fetcher from 'utils/fetcher'
 import { NORMALIZE_ROYALTIES } from './_app'
 import supportedChains from 'utils/chains'
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faBolt,
+} from '@fortawesome/free-solid-svg-icons'
 import ChainToggle from 'components/common/ChainToggle'
 import CollectionsTimeDropdown, {
   CollectionsSortingOption,
@@ -86,17 +90,17 @@ const IndexPage: NextPage<Props> = ({ ssr }) => {
             css={{ mx: 'auto', maxWidth: 728, pt: '$5', textAlign: 'center' }}
           >
             <Text style="h3" css={{ mb: 24 }}>
-              Open Source Marketplace
+              Sell your NFT instantly
             </Text>
             <Text style="body1" css={{ mb: 48 }}>
-              Reservoir Marketplace is an open-source project that showcases the
-              latest and greatest features of the Reservoir Platform.
+              Instant sell your NFT's across all major marketplaces.
             </Text>
             <a
-              href="https://github.com/reservoirprotocol/marketplace-v2"
-              target="_blank"
+              href="/portfolio"
             >
-              <Button color="gray3">View Source Code</Button>
+              <Button color="gray3">
+                <FontAwesomeIcon icon={faBolt} /> Sell
+              </Button>
             </a>
           </Flex>
         )}
@@ -114,7 +118,7 @@ const IndexPage: NextPage<Props> = ({ ssr }) => {
             }}
           >
             <Text style="h4" as="h4">
-              Popular Collections
+              Trending
             </Text>
             <Flex align="center" css={{ gap: '$4' }}>
               <CollectionsTimeDropdown
