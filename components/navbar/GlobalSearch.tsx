@@ -70,14 +70,14 @@ const CollectionItem: FC<Props> = ({ collection, handleSelectResult }) => {
         align="center"
       >
         <Img
-          src={collectionImage}
-          style={{ width: 36, height: 36, borderRadius: 4 }}
-          width={36}
-          height={36}
+          src={collectionImage || 'https://via.placeholder.com/32?text='}
+          style={{ width: 40, height: 40, borderRadius: 4 }}
+          width={40}
+          height={40}
           alt="Searchbar Collection Image"
         />
-        <Flex direction="column" css={{ minWidth: 0 }}>
-          <Flex align="center" css={{ gap: '$1' }}>
+        <Flex direction="column" css={{ gap: '$1' }}>
+          <Flex css={{ gap: '$2' }}>
             <Text style="subtitle1" ellipsify>
               {collection.name}
             </Text>
@@ -93,7 +93,7 @@ const CollectionItem: FC<Props> = ({ collection, handleSelectResult }) => {
                     ? collection.darkChainIcon
                     : collection.lightChainIcon
                 }
-                style={{ height: 12 }}
+                style={{ height: 15 }}
               />
             </Box>
             {tokenCount && (
@@ -150,6 +150,7 @@ const WalletItem: FC<WalletItemProps> = ({ wallet }) => {
         ) : (
           <Jazzicon
             diameter={32}
+            aperStyles={{ borderRadius: '8px' }}
             seed={jsNumberForAddress(wallet.address as string)}
           />
         )}
@@ -197,6 +198,8 @@ const GlobalSearch = forwardRef<
   const hasRecentResults = recentResults.length > 0
 
   const debouncedSearch = useDebounce(search, 500)
+
+  const { theme } = useTheme()
 
   const isMobile = useMediaQuery({ query: '(max-width: 960px)' })
 
@@ -311,15 +314,37 @@ const GlobalSearch = forwardRef<
             transform: 'translate(0, -50%)',
           }}
         >
-          <Text
-            css={{
-              color: '$gray9',
-              display: 'none',
-              '@bp1100': { display: 'block' },
-            }}
-          >
-            ⌘K
-          </Text>
+          {theme == 'dark' ? (
+            <Text
+              css={{
+                justifyContent: 'center',
+                width: '26px',
+                height: '26px',
+                borderRadius: '8px',
+                color: 'subtle',
+                backgroundColor: '#363c3e',
+                display: 'block',
+                '@bp1100': { display: 'flex' },
+              }}
+            >
+              /
+            </Text>
+          ) : (
+            <Text
+              css={{
+                justifyContent: 'center',
+                width: '26px',
+                height: '26px',
+                borderRadius: '8px',
+                color: 'subtle',
+                backgroundColor: '#e6e8eb',
+                display: 'block',
+                '@bp1100': { display: 'flex' },
+              }}
+            >
+              /
+            </Text>
+          )}
         </Box>
       )}
       <Input

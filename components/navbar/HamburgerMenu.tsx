@@ -23,6 +23,7 @@ import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import { FullscreenModal } from 'components/common/FullscreenModal'
 import { useENSResolver } from 'hooks'
 import ThemeSwitcher from 'components/navbar/ThemeSwitcher'
+import { useTheme } from 'next-themes'
 import Wallet from 'components/navbar/Wallet'
 
 const HamburgerMenu = () => {
@@ -41,7 +42,7 @@ const HamburgerMenu = () => {
       size="small"
       color="gray3"
     >
-      <FontAwesomeIcon icon={faBars} width={16} height={16} />
+      <FontAwesomeIcon icon={faBars} width={24} height={24} />
     </Button>
   )
 
@@ -65,13 +66,22 @@ const HamburgerMenu = () => {
           justify="between"
         >
           <Link href="/">
-            <Box css={{ width: 34, cursor: 'pointer' }}>
-              <Image
-                src="/reservoirLogo.svg"
-                width={34}
-                height={39}
-                alt="Reservoir"
-              />
+            <Box css={{ width: 136, cursor: 'pointer' }}>
+              {theme == 'dark' ? (
+                <Image
+                  src="/seaportMarketLogo.svg"
+                  width={136}
+                  height={40}
+                  alt="SeaPort"
+                />
+              ) : (
+                <Image
+                  src="/seaportMarketLogoLight.svg"
+                  width={136}
+                  height={40}
+                  alt="SeaPort"
+                />
+              )}
             </Box>
           </Link>
           <RadixDialog.Close>
@@ -93,6 +103,9 @@ const HamburgerMenu = () => {
             </Flex>
           </RadixDialog.Close>
         </Flex>
+        <div className="my-2 px-4">
+          <ThemeSwitcher />
+        </div>
         {isConnected ? (
           <Flex
             css={{
@@ -118,6 +131,7 @@ const HamburgerMenu = () => {
                   ) : (
                     <Jazzicon
                       diameter={36}
+                      paperStyles={{ borderRadius: '8px' }}
                       seed={jsNumberForAddress(address as string)}
                     />
                   )}
@@ -137,20 +151,7 @@ const HamburgerMenu = () => {
                   pt: '24px',
                 }}
               >
-                Explore
-              </Text>
-            </Link>
-            <Link href="/portfolio" legacyBehavior>
-              <Text
-                style="subtitle1"
-                css={{
-                  borderBottom: '1px solid $gray4',
-                  cursor: 'pointer',
-                  pb: '$4',
-                  pt: '24px',
-                }}
-              >
-                Sell
+                Rankings
               </Text>
             </Link>
             <Link href="/portfolio" legacyBehavior>
@@ -164,9 +165,9 @@ const HamburgerMenu = () => {
                   gap: '$1',
                 }}
               >
-                <Text style="subtitle1">Portfolio</Text>
+                <Text style="subtitle1">Sell</Text>
                 <Text style="body3" color="subtle">
-                  Manage your items, collections, listings and offers
+                  Sell your items, Manage listings and offers
                 </Text>
               </Flex>
             </Link>
@@ -176,7 +177,6 @@ const HamburgerMenu = () => {
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 alignItems: 'center',
-                borderBottom: '1px solid $gray4',
               }}
               onClick={() => disconnect()}
             >
@@ -209,7 +209,7 @@ const HamburgerMenu = () => {
             }}
           >
             <Flex direction="column">
-              <Link href="/" legacyBehavior>
+              <Link href="/collection-rankings" legacyBehavior>
                 <Text
                   style="subtitle1"
                   css={{
@@ -220,7 +220,7 @@ const HamburgerMenu = () => {
                     width: '100%',
                   }}
                 >
-                  Explore
+                  Rankings
                 </Text>
               </Link>
               <Link href="/portfolio" legacyBehavior>
@@ -234,22 +234,9 @@ const HamburgerMenu = () => {
                     width: '100%',
                   }}
                 >
-                  Portfolio
+                  Sell
                 </Text>
               </Link>
-              <Anchor
-                href="https://docs.reservoir.tools/docs"
-                target="_blank"
-                css={{
-                  borderBottom: '1px solid $gray4',
-                  cursor: 'pointer',
-                  pb: '$4',
-                  pt: '24px',
-                  width: '100%',
-                }}
-              >
-                <Text style="subtitle1">Docs</Text>
-              </Anchor>
             </Flex>
             <Box>
               <ConnectWalletButton />
@@ -266,7 +253,7 @@ const HamburgerMenu = () => {
             borderTop: '1px solid $gray4',
           }}
         >
-          <a href="https://twitter.com/reservoir0x" target="_blank">
+          <a href="https://twitter.com/Seaport_market" target="_blank">
             <Button
               css={{ justifyContent: 'center', width: '44px', height: '44px' }}
               type="button"
@@ -276,7 +263,6 @@ const HamburgerMenu = () => {
               <FontAwesomeIcon icon={faTwitter} width={20} height={20} />
             </Button>
           </a>
-          <ThemeSwitcher />
         </Flex>
       </Flex>
     </FullscreenModal>
