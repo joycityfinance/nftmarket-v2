@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Box, Flex } from '../primitives'
+import { Box, Flex, Button } from '../primitives'
 import GlobalSearch from './GlobalSearch'
 import { useRouter } from 'next/router'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -16,6 +16,11 @@ import { useMounted } from '../../hooks'
 import { useAccount } from 'wagmi'
 import CartButton from './CartButton'
 import { AccountSidebar } from 'components/navbar/AccountSidebar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faBolt, faRankingStar,
+} from '@fortawesome/free-solid-svg-icons'
+
 
 export const NAVBAR_HEIGHT = 81
 export const NAVBAR_HEIGHT_MOBILE = 77
@@ -59,13 +64,22 @@ const Navbar = () => {
       <Box css={{ flex: 1 }}>
         <Flex align="center">
           <Link href="/">
-            <Box css={{ width: 34, cursor: 'pointer' }}>
-              <Image
-                src="/reservoirLogo.svg"
-                width={34}
-                height={39}
-                alt="Reservoir"
-              />
+          <Box css={{ width: 136, cursor: 'pointer' }}>
+              {theme == 'dark' ? (
+                <Image
+                  src="/seaportMarketLogo.svg"
+                  width={136}
+                  height={39}
+                  alt="SeaPort"
+                />
+              ) : (
+                <Image
+                  src="/seaportMarketLogoLight.svg"
+                  width={136}
+                  height={40}
+                  alt="SeaPort"
+                />
+              )}
             </Box>
           </Link>
         </Flex>
@@ -98,25 +112,25 @@ const Navbar = () => {
       <Box css={{ flex: 1 }}>
         <Flex align="center">
           <Link href="/">
-            <Box css={{ width: 112, cursor: 'pointer' }}>
+            <Box css={{ width: 136, cursor: 'pointer' }}>
               {theme == 'dark' ? (
                 <Image
-                  src="/reservoirMarketLogo.svg"
-                  width={112}
-                  height={36}
-                  alt="Reservoir"
+                  src="/seaportMarketLogo.svg"
+                  width={136}
+                  height={40}
+                  alt="SeaPort"
                 />
               ) : (
                 <Image
-                  src="/reservoirMarketLogoLight.svg"
-                  width={112}
-                  height={36}
-                  alt="Reservoir"
+                  src="/seaportMarketLogoLight.svg"
+                  width={136}
+                  height={40}
+                  alt="SeaPort"
                 />
               )}
             </Box>
           </Link>
-          <Box css={{ flex: 1, px: '$5', maxWidth: 460 }}>
+          <Box css={{ flex: 1, px: '$5', width: '100%' }}>
             <GlobalSearch
               ref={searchRef}
               placeholder="Search collections and addresses"
@@ -124,17 +138,32 @@ const Navbar = () => {
               key={router.asPath}
             />
           </Box>
-          <Flex align="center" css={{ gap: '$5', mr: '$5' }}>
+          <Flex align="center" css={{ gap: '$3', mr: '$3' }}>
             <Link href="/collection-rankings">
-              <NavItem active={router.pathname == '/collection-rankings'}>
-                Collections
-              </NavItem>
+              <Button
+                css={{
+                  '&:hover': {
+                    background: '$gray8',
+                  },
+                }}
+                color="gray3"
+              >
+                <FontAwesomeIcon icon={faRankingStar} />
+                    Ranks
+              </Button>
             </Link>
             <Link href="/portfolio">
-              <NavItem active={router.pathname == '/portfolio'}>Sell</NavItem>
-            </Link>
-            <Link href="https://docs.reservoir.tools/docs">
-              <NavItem active={false}>Docs</NavItem>
+              <Button
+                css={{
+                  '&:hover': {
+                    background: '$gray8',
+                  },
+                }}
+                color="gray3"
+              >
+                <FontAwesomeIcon icon={faBolt} />
+                    Sell
+              </Button>
             </Link>
           </Flex>
         </Flex>
@@ -146,7 +175,7 @@ const Navbar = () => {
         {isConnected ? (
           <AccountSidebar />
         ) : (
-          <Box css={{ maxWidth: '185px' }}>
+          <Box css={{ maxWidth: '285px' }}>
             <ConnectWalletButton />
           </Box>
         )}

@@ -26,7 +26,7 @@ const AvatarRoot = styled(AvatarPrimitive.Root, {
         size: 24,
       },
       medium: {
-        size: 36,
+        size: 42,
       },
       large: {
         size: 48,
@@ -40,7 +40,7 @@ const AvatarRoot = styled(AvatarPrimitive.Root, {
     },
     corners: {
       rounded: {
-        borderRadius: 4,
+        borderRadius: 8,
       },
       circle: {
         borderRadius: '100%',
@@ -48,7 +48,7 @@ const AvatarRoot = styled(AvatarPrimitive.Root, {
     },
   },
   defaultVariants: {
-    size: 'medium',
+    size: 'large',
     corners: 'circle',
   },
 })
