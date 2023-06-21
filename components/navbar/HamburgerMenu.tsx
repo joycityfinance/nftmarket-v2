@@ -27,6 +27,7 @@ import { useTheme } from 'next-themes'
 import Wallet from 'components/navbar/Wallet'
 
 const HamburgerMenu = () => {
+  const { theme } = useTheme()
   const { address, isConnected } = useAccount()
   const {
     avatar: ensAvatar,
